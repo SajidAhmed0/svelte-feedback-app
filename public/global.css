@@ -7,7 +7,6 @@
 body{
 	font-family: 'Poppins', sans-serif;
 	background-color: #202142;
-	color: #fff
 }
 
 ul{
@@ -17,4 +16,5 @@ ul{
 .container{
 	max-width: 768px;
 	margin: 100px auto;
+	padding: 0 20px;
 }
