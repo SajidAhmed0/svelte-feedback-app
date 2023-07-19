@@ -1,4 +1,6 @@
 <script>
+	import FeedbackStats from './components/FeedbackStats.svelte'
+
 	import FeedbackList from './components/FeedbackList.svelte'
 	let feedback = [
 		{
@@ -17,8 +19,17 @@
 			text: 'Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.'
 		}
 	]
+
+	$: count = feedback.length;
+	$: average = feedback.reduce((a, {rating})=> a + rating, 0) / feedback.length;
+
+	const deleteFeedback = (e) => {
+		const itemId = e.detail;
+		feedback = feedback.filter((fb)=> fb.id != itemId);
+	}
 </script>
 
-<main class="container">
-	<FeedbackList {feedback}/>
+<main class="container"> 
+	<FeedbackStats {average} {count}/>
+	<FeedbackList {feedback} on:delete-feedback={deleteFeedback}/>
 </main>
