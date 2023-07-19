@@ -1,12 +1,10 @@
 <script>
     import {v4 as uuidv4} from 'uuid';
 
+    import {FeedbackStore} from '../stores'
     import Card from "./Card.svelte";
     import Button from "./Button.svelte";
     import RatingSelect from "./RatingSelect.svelte";
-
-    import {createEventDispatcher} from 'svelte';
-    let dispatcher = createEventDispatcher();
 
     let text = '';
     let rating = 10;
@@ -32,7 +30,7 @@
                 text,
                 rating: parseInt(rating)
             }
-            dispatcher('new-feedback', newFeedback);
+            FeedbackStore.update((currentFeedback)=> [newFeedback, ...currentFeedback]);
 
             text = '';
         }
